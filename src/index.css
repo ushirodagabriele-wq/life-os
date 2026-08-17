@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f2f1ec;
+  color: #0a0a0a;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid #2b5876;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Thin editorial scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.18);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 10, 10, 0.32);
+  background-clip: content-box;
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-[0.65rem] uppercase tracking-[0.14em] text-aizome;
+  }
+  .card {
+    @apply bg-washi border border-line rounded-sharp shadow-card;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.08em]
+           px-4 py-2.5 rounded-sharp border transition-colors min-h-[40px] disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn border-obsidiana bg-obsidiana text-washi hover:bg-aizome hover:border-aizome;
+  }
+  .btn-ghost {
+    @apply btn border-obsidiana text-obsidiana hover:border-aizome hover:text-aizome hover:bg-aizome-soft;
+  }
+  .btn-soft {
+    @apply btn border-line text-ink-dim hover:text-obsidiana hover:border-obsidiana;
+  }
+  .input {
+    @apply w-full bg-washi border border-line rounded-sharp px-3 py-2 text-sm text-obsidiana
+           placeholder:text-ink-dim/60 focus:border-aizome outline-none transition-colors;
+  }
+  .label {
+    @apply block font-mono text-[0.6rem] uppercase tracking-[0.12em] text-ink-dim mb-1.5;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 font-mono text-[0.6rem] uppercase tracking-[0.08em]
+           px-2 py-0.5 rounded-sharp border border-line;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.5s var(--ease) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
