@@ -109,7 +109,7 @@ export const OPPORTUNITIES_EXCLUDED = [
 
 // Painel de renda fixa (demo) — no app real, uma IA lê um relatório diário de
 // ofertas e organiza por tipo. Bancos e taxas abaixo são fictícios.
-export const AUVP_PANEL = {
+export const FIXED_INCOME_PANEL = {
   date: '2026-07-31',
   emailUrl: 'https://example.com/thread',
   summary: 'Ofertas de renda fixa mais atrativas do dia, organizadas por tipo (dados fictícios).',

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, ProgressBar } from '../components/ui';
 import { useStore } from '../store/useStore';
-import { THEMES, NEWSLETTERS_DETECTED, OPP_PROFILE, OPPORTUNITIES, OPPORTUNITIES_EXCLUDED, AUVP_PANEL, RADAR_GENERATED_AT } from '../data/radar';
+import { THEMES, NEWSLETTERS_DETECTED, OPP_PROFILE, OPPORTUNITIES, OPPORTUNITIES_EXCLUDED, FIXED_INCOME_PANEL, RADAR_GENERATED_AT } from '../data/radar';
 import { fmtLong, fmtShort, daysUntil } from '../lib/date';
 import {
   Radar as RadarIcon, Globe, Cpu, TrendingUp, Flame, Sparkles, RefreshCw,
@@ -93,7 +93,7 @@ export default function Radar() {
               <div className="space-y-3">
                 {theme.blocks.map((b, i) => <Block key={i} block={b} theme={theme.name} />)}
               </div>
-              {theme.id === 'mercado' && <AuvpPanel />}
+              {theme.id === 'mercado' && <FixedIncomePanel />}
             </section>
           );
         })}
@@ -223,28 +223,28 @@ function BulletGroup({ label, items, dot }) {
   );
 }
 
-function AuvpPanel() {
+function FixedIncomePanel() {
   return (
     <Card className="mt-3 border-l-2 border-l-warn">
       <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
         <div className="flex items-center gap-2 flex-wrap">
           <Wallet size={16} className="text-warn" />
-          <h3 className="font-heading font-bold text-base">AUVP Capital · Renda Fixa do dia</h3>
-          <span className="chip text-ink-dim border-line">{fmtShort(AUVP_PANEL.date)}</span>
+          <h3 className="font-heading font-bold text-base">Renda Fixa do dia</h3>
+          <span className="chip text-ink-dim border-line">{fmtShort(FIXED_INCOME_PANEL.date)}</span>
         </div>
-        <a href={AUVP_PANEL.emailUrl} target="_blank" rel="noopener noreferrer"
+        <a href={FIXED_INCOME_PANEL.emailUrl} target="_blank" rel="noopener noreferrer"
           className="text-[0.66rem] font-mono uppercase tracking-[0.06em] text-aizome hover:underline inline-flex items-center gap-1">
           Ver e-mail original <ArrowUpRight size={11} />
         </a>
       </div>
-      <p className="text-[0.78rem] text-ink-dim mb-1">{AUVP_PANEL.summary}</p>
+      <p className="text-[0.78rem] text-ink-dim mb-1">{FIXED_INCOME_PANEL.summary}</p>
       <p className="text-[0.72rem] mb-3 flex items-center gap-1.5">
         <span className="font-mono text-[0.56rem] uppercase tracking-[0.1em] text-ink-dim">Perfil</span>
-        <span className="text-obsidiana/90">{AUVP_PANEL.profile}</span>
+        <span className="text-obsidiana/90">{FIXED_INCOME_PANEL.profile}</span>
       </p>
 
       <div className="grid sm:grid-cols-2 gap-3">
-        {AUVP_PANEL.groups.map((g, i) => (
+        {FIXED_INCOME_PANEL.groups.map((g, i) => (
           <div key={i} className="border border-line rounded-sharp overflow-hidden">
             <div className="flex items-center justify-between gap-2 px-3 py-2 bg-washi-soft/60 border-b border-line">
               <span className="font-heading font-bold text-[0.82rem]">{g.label}</span>
@@ -269,10 +269,10 @@ function AuvpPanel() {
       </div>
 
       <p className="text-[0.7rem] text-warn mt-3 flex items-start gap-1.5">
-        <AlertTriangle size={12} className="mt-0.5 shrink-0" /> {AUVP_PANEL.reminder}
+        <AlertTriangle size={12} className="mt-0.5 shrink-0" /> {FIXED_INCOME_PANEL.reminder}
       </p>
       <p className="text-[0.66rem] text-ink-dim mt-2 pt-2 border-t border-line">
-        ⭐ = melhor taxa do grupo. Peça “atualiza a AUVP” a cada novo relatório — a partir do próximo, mostro também as
+        ⭐ = melhor taxa do grupo. Peça “atualiza a renda fixa” a cada novo relatório — a partir do próximo, mostro também as
         <b> mudanças</b> (novas ofertas, saídas e variação de taxa) em relação ao dia anterior.
       </p>
     </Card>
